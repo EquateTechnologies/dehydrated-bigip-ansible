@@ -1,0 +1,23 @@
+---
+
+- name: bigip_management_cert
+  hosts: bigip
+  connection: ssh
+  gather_facts: false
+  vars:
+    ansible_user: "{{ bigip_shell_username }}"
+    ansible_password: "{{ bigip_shell_password }}"
+
+  tasks:
+    - name: upload cert
+      copy:
+        src: "{{ cert_file }}"
+        dest: "/etc/httpd/conf/ssl.crt/server.crt"
+
+    - name: upload key
+      copy:
+        src: "{{ key_file }}"
+        dest: "/etc/httpd/conf/ssl.key/server.key"
+
+    - name: change management cert
+      command: tmsh restart /sys service httpd

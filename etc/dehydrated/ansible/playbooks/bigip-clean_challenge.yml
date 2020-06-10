@@ -1,0 +1,43 @@
+
+---
+
+- name: version
+  hosts: bigip
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: setup provider
+      set_fact:
+        provider:
+          server: "{{ ansible_host }}"
+          user: "{{ bigip_username }}"
+          password: "{{ bigip_password }}"
+          validate_certs: false
+          server_port: 443
+
+    - name: Wait for BIG-IP to be available
+      bigip_wait:
+        timeout: 300
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      register: status
+      until: status is success
+      retries: 10
+      delay: 6
+
+    - name: Update data group
+      bigip_data_group:
+        name: "{{ data_group_name }}"
+        internal: yes
+        records: []
+        provider: "{{ provider }}"
+      delegate_to: localhost
+
+    - name: Sync configuration from device to group
+      bigip_configsync_action:
+        device_group: "{{ sync_device_group }}"
+        sync_device_to_group: yes
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      when: sync_config == "1"

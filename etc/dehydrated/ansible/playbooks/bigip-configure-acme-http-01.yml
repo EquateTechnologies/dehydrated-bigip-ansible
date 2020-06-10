@@ -1,0 +1,83 @@
+---
+
+- name: version
+  hosts: bigip
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: setup provider
+      set_fact:
+        provider:
+          server: "{{ ansible_host }}"
+          user: "{{ bigip_username }}"
+          password: "{{ bigip_password }}"
+          validate_certs: false
+          server_port: 443
+
+    - name: Wait for BIG-IP to be available
+      bigip_wait:
+        timeout: 300
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      register: status
+      until: status is success
+      retries: 10
+      delay: 6
+
+    - name: Create ACME HTTP-01 challenge response iRule
+      bigip_irule:
+        module: ltm
+        partition: "{{ bigip_partition }}"
+        name: ACME_http-01
+        content: |
+          priority 2
+          when RULE_INIT {
+            set static::ACME_http-01_validator_class {ACME_http-01}
+            set static::ACME_http-01_error_response {<html><body><h1>503 - Error</h1><p>Content not found.</body></html>}
+          }
+          when HTTP_REQUEST {
+            if { [string tolower [HTTP::uri]] starts_with {/.well-known/acme-challenge/}
+              and [class match [HTTP::uri] ends_with ${static::ACME_http-01_validator_class}] != {} } {
+              set response_content [class lookup [substr [HTTP::uri] 28] ${static::ACME_http-01_validator_class}]
+              if { ${response_content} != {} } {
+                HTTP::respond 200 -version auto content ${response_content} noserver Content-Type {text/plain} Content-Length [string length ${response_content}] Cache-Control no-store
+              } else {
+                HTTP::respond 503 -version auto content ${static::ACME_http-01_error_response} noserver Content-Type {text/html} Content-Length [string length ${static::ACME_http-01_error_response}] Cache-Control no-store
+              }
+              unset response_content
+              event disable all
+              return
+            }
+          }
+        state: present
+        provider: "{{ provider }}"
+      delegate_to: localhost
+
+    - name: Create a data group for ACME HTTP-01 validation
+      bigip_data_group:
+        partition: "{{ bigip_partition }}"
+        name: ACME_http-01
+        internal: yes
+        records:
+          - key: test
+            value: "1234"
+        type: "string"
+        state: present
+        provider: "{{ provider }}"
+      delegate_to: localhost
+
+    - name: Save the running configuration of the BIG-IP
+      bigip_config:
+        save: yes
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      when: save_config == "1"
+
+    - name: Sync configuration from device to group
+      bigip_configsync_action:
+        device_group: "{{ sync_device_group }}"
+        sync_device_to_group: yes
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      when: sync_config == "1"
