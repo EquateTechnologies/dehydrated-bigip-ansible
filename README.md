@@ -20,8 +20,8 @@ Recently tested with BIG-IP versions:
 
 All documentation is available in the Wiki connected to this repository, start here: [Wiki](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/wiki)
 
-### Support or Contact
+### Support
 
-Free support via this repository is available on a best effort basis. Please log an issue describing the problem, and if you've already worked out what the issue is and fixed it in a fork of the repository then feel free to submit a pull request.
+Free support via this repository is available on a best effort basis. Please [log an issue](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/issues) describing the problem, and if you've already worked out what the issue is and fixed it in a fork of the repository then feel free to submit a [pull request](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/pulls).
 
 Equate Technologies can provide full support with SLA's for paying customers. For information please contact us via [our contact page](https://equatetechnologies.com.au/contact-us/)
