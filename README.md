@@ -12,9 +12,11 @@ HTTP-01 and DNS-01 based validation processes can both be used; but are supporte
 
 Recently tested with BIG-IP versions:
 
-- VE, 13.x (TBC)
+- VE, 13.1.3.2.0.0.4
 - VE, 14.1.2.5.0.0.3
 - VE, 15.1.0.3.0.0.12
+
+NOTE: This is effectively the replacement for the old [dehydrated-bigip](https://github.com/colin-stubbs/dehydrated-bigip/) project.
 
 ### Documentation
 
