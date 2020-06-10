@@ -1,6 +1,6 @@
 ## Dehydrated F5 BIG-IP using Ansible
 
-"dehydrated-bigip-ansible" is a set of hooks for "dehydrated", which is a Let's Encrypt client written entirely in Bash shell.
+"dehydrated-bigip-ansible" is a set of hooks for "dehydrated", which is an ACME API client written entirely in Bash shell. It's typically used with the ACME API provided by Let's Encrypt.
 
 Included are a number of Ansible playbooks, used by the hooks, that perform ACME HTTP-01 or DNS-01 challenge completion; and if successful will deploy key/s and certs to targeted F5 BIG-IP systems.
 
