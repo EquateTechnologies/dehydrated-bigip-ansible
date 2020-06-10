@@ -1,37 +1,17 @@
-## Welcome to GitHub Pages
+## Dehydrated F5 BIG-IP using Ansible
 
-You can use the [editor on GitHub](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+"dehydrated-bigip-ansible" is a set of hooks for "dehydrated", which is a Let's Encrypt client written entirely in Bash shell.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Included are a number of Ansible playbooks, used by the hooks, that perform ACME HTTP-01 or DNS-01 challenge completion; and if successful will deploy key/s and certs to targeted F5 BIG-IP systems.
 
-### Markdown
+"dehydrated-bigip-ansible" leverages default Ansible modules all interaction with BIG-IP systems; mostly we use the official F5 BIG-IP Ansible modules ( https://clouddocs.f5.com/products/orchestration/ansible/ ) however some Ansible based SSH file transfer and command execution is used if deploy an F5 BIG-IP management certificate.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+This provides automation for ACME based challenge validation via and certificate/key deployment to F5 BIG-IP appliances.
 
-```markdown
-Syntax highlighted code block
+HTTP-01 and DNS-01 based validation processes can both be used; but are supported using different hook scripts.
 
-# Header 1
-## Header 2
-### Header 3
+Recently tested with BIG-IP versions:
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+- VE, 13.x (TBC)
+- VE, 14.1.2.5.0.0.3
+- VE, 15.1.0.3.0.0.12
