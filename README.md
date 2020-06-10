@@ -15,3 +15,13 @@ Recently tested with BIG-IP versions:
 - VE, 13.x (TBC)
 - VE, 14.1.2.5.0.0.3
 - VE, 15.1.0.3.0.0.12
+
+### Documentation
+
+All documentation is available in the Wiki connected to this repository, start here: [Wiki](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/wiki)
+
+### Support or Contact
+
+Free support via this repository is available on a best effort basis. Please log an issue describing the problem, and if you've already worked out what the issue is and fixed it in a fork of the repository then feel free to submit a pull request.
+
+Equate Technologies can provide full support with SLA's for paying customers. For information please contact us via [our contact page](https://equatetechnologies.com.au/contact-us/)
