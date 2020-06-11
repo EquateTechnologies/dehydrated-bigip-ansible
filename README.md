@@ -16,7 +16,7 @@ Recently tested with BIG-IP versions:
 - VE, 14.1.2.5.0.0.3
 - VE, 15.1.0.3.0.0.12
 
-NOTE: This is effectively the replacement for the old [dehydrated-bigip](https://github.com/colin-stubbs/dehydrated-bigip/) project.
+NOTE: This is the replacement for the old [dehydrated-bigip](https://github.com/colin-stubbs/dehydrated-bigip/) project.
 
 ### Documentation
 
