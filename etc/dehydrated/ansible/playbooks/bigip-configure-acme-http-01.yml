@@ -31,10 +31,11 @@
         partition: "{{ bigip_partition }}"
         name: ACME_http-01
         content: |
+          # Responds to ACME HTTP-01 challenge verification requests by an ACME CA
           priority 2
           when RULE_INIT {
             set static::ACME_http-01_validator_class {ACME_http-01}
-            set static::ACME_http-01_error_response {<html><body><h1>503 - Error</h1><p>Content not found.</body></html>}
+            set static::ACME_http-01_error_response {<html><body><h1>503 - Error</h1><p>Content not found.</p></body></html>}
           }
           when HTTP_REQUEST {
             if { [string tolower [HTTP::uri]] starts_with {/.well-known/acme-challenge/}
