@@ -44,6 +44,13 @@
         provider: "{{ provider }}"
       delegate_to: localhost
 
+    - name: Enable OCSP validation/monitoring on certificate
+      bigip_command:
+        commands: "modify sys file ssl-cert {{ cert_name }}.crt { cert-validators replace-all-with { OCSP-STAPLE-{{ cert_issuer }} } cert-validation-options { ocsp } }"
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      when: ocsp_staple == "1"
+
     - name: Create/update certificate chain
       bigip_ssl_certificate:
         partition: "{{ bigip_partition }}"
@@ -66,6 +73,13 @@
         provider: "{{ provider }}"
       delegate_to: localhost
       when: clientssl_manage == "1"
+
+    - name: Enable OCSP validation/monitoring on client SSL profile
+      bigip_command:
+        commands: "modify ltm profile client-ssl {{ clientssl_name }} ocsp-stapling enabled"
+        provider: "{{ provider }}"
+      delegate_to: localhost
+      when: ocsp_staple == "1"
 
     - name: Save the running configuration of the BIG-IP
       bigip_config:

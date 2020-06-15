@@ -22,7 +22,7 @@ unchanged_cert() {
 
   ansible-playbook ${ANSIBLE_ARGS} \
     --inventory="${ANSIBLE_INVENTORY}" \
-    --extra-vars "bigip_partition=${BIGIP_PARTITION} cert_issuer=${BIGIP_ISSUER_CERT} cert_name=${CERT_NAME} cert_key_file=${KEYFILE} cert_file=${CERTFILE} cert_chain_file=${CHAINFILE} cert_fullchain_file=${FULLCHAINFILE} clientssl_manage=${BIGIP_CLIENT_SSL_MANAGE} clientssl_name=${CLIENT_SSL_NAME} clientssl_parent=${BIGIP_CLIENT_SSL_PARENT} save_config=${BIGIP_SAVE_CONFIG} sync_config=${BIGIP_SYNC_CONFIG} sync_device_group=${BIGIP_SYNC_DEVICE_GROUP} ${ANSIBLE_EXTRA_VARS}" \
+    --extra-vars "bigip_partition=${BIGIP_PARTITION} cert_issuer=${BIGIP_ISSUER_CERT} cert_name=${CERT_NAME} cert_key_file=${KEYFILE} cert_file=${CERTFILE} cert_chain_file=${CHAINFILE} cert_fullchain_file=${FULLCHAINFILE} clientssl_manage=${BIGIP_CLIENT_SSL_MANAGE} clientssl_name=${CLIENT_SSL_NAME} clientssl_parent=${BIGIP_CLIENT_SSL_PARENT} ocsp_staple=${BIGIP_OCSP_STAPLE} save_config=${BIGIP_SAVE_CONFIG} sync_config=${BIGIP_SYNC_CONFIG} sync_device_group=${BIGIP_SYNC_DEVICE_GROUP} ${ANSIBLE_EXTRA_VARS}" \
     ${ANSIBLE_PLAYBOOK_DEPLOY_CERT_TRAFFIC}
 
   return ${?}
