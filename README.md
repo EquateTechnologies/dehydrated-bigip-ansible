@@ -39,9 +39,9 @@ All documentation is available in the Wiki connected to this repository, start h
 
 The official documentation from the other components involved should be utilised,
 
-ansible - [https://www.ansible.com/](https://www.ansible.com/)
-dehydrated - [https://dehydrated.io/](https://dehydrated.io/)
-lexicon - [https://github.com/AnalogJ/lexicon](https://github.com/AnalogJ/lexicon)
+- ansible - [https://www.ansible.com/](https://www.ansible.com/)
+- dehydrated - [https://dehydrated.io/](https://dehydrated.io/)
+- lexicon - [https://github.com/AnalogJ/lexicon](https://github.com/AnalogJ/lexicon)
 
 ### Support
 
