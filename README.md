@@ -23,6 +23,11 @@ The content in this repository has been used against the following ACME API's,
 - Let’s Encrypt (ACMEv2) - [https://letsencrypt.org/](https://letsencrypt.org/)
 - DigiCert CertCentral (ACMEv2) - [https://www.digicert.com](https://www.digicert.com)
 
+HTTP-01 validation based on the content (F5 BIG-IP iRule etc) in this repository has been used against the following DNS service API's,
+
+- Let’s Encrypt (ACMEv2) - [https://letsencrypt.org/](https://letsencrypt.org/)
+- DigiCert CertCentral (ACMEv2) - [https://www.digicert.com](https://www.digicert.com)
+
 DNS-01 validation based on the content in this repository has been used against the following DNS service API's,
 
 - Azure DNS - [https://azure.microsoft.com/en-au/services/dns](https://azure.microsoft.com/en-au/services/dns)
