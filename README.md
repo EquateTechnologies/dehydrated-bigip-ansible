@@ -1,5 +1,7 @@
 ## Dehydrated F5 BIG-IP using Ansible
 
+NOTE: This project is the replacement for the old [dehydrated-bigip](https://github.com/colin-stubbs/dehydrated-bigip/) project.
+
 dehydrated-bigip-ansible is a set of hooks for dehydrated, which is an ACME API client written entirely in Bash shell. It's typically used with the ACME API provided by Let's Encrypt.
 
 Included are a number of Ansible playbooks, used by the hooks, that perform ACME HTTP-01 or DNS-01 challenge completion; and if successful will deploy keys and certs to targetted F5 BIG-IP systems.
@@ -18,15 +20,13 @@ Recently tested with BIG-IP versions:
 
 The content in this repository has been used against the following ACME API's,
 
-Let’s Encrypt (ACMEv2) - [https://letsencrypt.org/](https://letsencrypt.org/)
-DigiCert CertCentral (ACMEv2) - [https://www.digicert.com](https://www.digicert.com)
+- Let’s Encrypt (ACMEv2) - [https://letsencrypt.org/](https://letsencrypt.org/)
+- DigiCert CertCentral (ACMEv2) - [https://www.digicert.com](https://www.digicert.com)
 
 DNS-01 validation based on the content in this repository has been used against the following DNS service API's,
 
-Azure DNS - [https://azure.microsoft.com/en-au/services/dns](https://azure.microsoft.com/en-au/services/dns)
-CloudFlare - [https://cloudflare.com/](https://cloudflare.com/)
-
-NOTE: This is the replacement for the old [dehydrated-bigip](https://github.com/colin-stubbs/dehydrated-bigip/) project.
+- Azure DNS - [https://azure.microsoft.com/en-au/services/dns](https://azure.microsoft.com/en-au/services/dns)
+- CloudFlare - [https://cloudflare.com/](https://cloudflare.com/)
 
 ### Documentation
 
