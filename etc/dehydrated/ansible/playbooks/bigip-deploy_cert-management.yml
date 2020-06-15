@@ -5,8 +5,8 @@
   connection: ssh
   gather_facts: false
   vars:
-    ansible_user: "{{ bigip_shell_username }}"
-    ansible_password: "{{ bigip_shell_password }}"
+    ansible_user: "{{ bigip_ssh_username }}"
+    ansible_password: "{{ bigip_ssh_password }}"
 
   tasks:
     - name: upload cert
