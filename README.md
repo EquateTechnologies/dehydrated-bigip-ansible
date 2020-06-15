@@ -16,11 +16,27 @@ Recently tested with BIG-IP versions:
 - VE, 14.1.2.5.0.0.3
 - VE, 15.1.0.3.0.0.12
 
+The content in this repository has been used against the following ACME API's,
+
+Let’s Encrypt (ACMEv2) - [https://letsencrypt.org/](https://letsencrypt.org/)
+DigiCert CertCentral (ACMEv2) - [https://www.digicert.com](https://www.digicert.com)
+
+DNS-01 validation based on the content in this repository has been used against the following DNS service API's,
+
+Azure DNS - [https://azure.microsoft.com/en-au/services/dns](https://azure.microsoft.com/en-au/services/dns)
+CloudFlare - [https://cloudflare.com/](https://cloudflare.com/)
+
 NOTE: This is the replacement for the old [dehydrated-bigip](https://github.com/colin-stubbs/dehydrated-bigip/) project.
 
 ### Documentation
 
 All documentation is available in the Wiki connected to this repository, start here: [Wiki](https://github.com/EquateTechnologies/dehydrated-bigip-ansible/wiki)
+
+The official documentation from the other components involved should be utilised,
+
+ansible - [https://www.ansible.com/](https://www.ansible.com/)
+dehydrated - [https://dehydrated.io/](https://dehydrated.io/)
+lexicon - [https://github.com/AnalogJ/lexicon](https://github.com/AnalogJ/lexicon)
 
 ### Support
 
