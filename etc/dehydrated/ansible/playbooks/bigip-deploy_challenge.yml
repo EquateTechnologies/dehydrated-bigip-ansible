@@ -1,4 +1,3 @@
-
 ---
 
 - name: version
@@ -26,6 +25,17 @@
       retries: 10
       delay: 6
 
+    - name: Collect BIG-IP information
+      bigip_device_info:
+        gather_subset: devices
+        provider:
+          user: "{{ bigip_user }}"
+          password: "{{ bigip_password }}"
+          server: "{{ inventory_hostname }}"
+          validate_certs: no
+      register: devices
+      delegate_to: localhost
+
     - name: Update data group
       bigip_data_group:
         name: "{{ data_group_name }}"
@@ -35,6 +45,7 @@
             value: "{{ key_value }}"
         provider: "{{ provider }}"
       delegate_to: localhost
+      when: inventory_hostname == (devices.devices | selectattr('failover_state', 'search', 'active') | list | first).name
 
     - name: Sync configuration from device to group
       bigip_configsync_action:
@@ -42,4 +53,5 @@
         sync_device_to_group: yes
         provider: "{{ provider }}"
       delegate_to: localhost
-      when: sync_config == "1"
+      when: sync_config == "1" and inventory_hostname == (devices.devices | selectattr('failover_state', 'search', 'active') | list | first).name
+

@@ -9,15 +9,31 @@
     ansible_password: "{{ bigip_ssh_password }}"
 
   tasks:
+
+    - name: Collect BIG-IP information
+      bigip_device_info:
+        gather_subset: devices
+        provider:
+          user: "{{ bigip_user }}"
+          password: "{{ bigip_password }}"
+          server: "{{ inventory_hostname }}"
+          validate_certs: no
+      register: devices
+      delegate_to: localhost
+
     - name: upload cert
       copy:
         src: "{{ cert_file }}"
         dest: "/etc/httpd/conf/ssl.crt/server.crt"
+      when: inventory_hostname == (devices.devices | selectattr('failover_state', 'search', 'active') | list | first).name
 
     - name: upload key
       copy:
         src: "{{ key_file }}"
         dest: "/etc/httpd/conf/ssl.key/server.key"
+      when: inventory_hostname == (devices.devices | selectattr('failover_state', 'search', 'active') | list | first).name
 
     - name: change management cert
       command: tmsh restart /sys service httpd
+      when: inventory_hostname == (devices.devices | selectattr('failover_state', 'search', 'active') | list | first).name
+
