@@ -14,7 +14,7 @@
       bigip_device_info:
         gather_subset: devices
         provider:
-          user: "{{ bigip_user }}"
+          user: "{{ bigip_username }}"
           password: "{{ bigip_password }}"
           server: "{{ inventory_hostname }}"
           validate_certs: no
