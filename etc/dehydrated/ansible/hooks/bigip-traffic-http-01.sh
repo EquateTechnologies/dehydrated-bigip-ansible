@@ -20,7 +20,7 @@ deploy_challenge() {
 
   ansible-playbook ${ANSIBLE_ARGS} \
     --inventory=${ANSIBLE_INVENTORY} \
-    --extra-vars "bigip_partition=${BIGIP_PARTITION} data_group_name=${BIGIP_DATA_GROUP_NAME} key_name=${TOKEN_FILENAME} key_value=${TOKEN_VALUE} ${ANSIBLE_EXTRA_VARS}" \
+    --extra-vars "bigip_partition=${BIGIP_PARTITION} data_group_name=${BIGIP_DATA_GROUP_NAME} key_name=${TOKEN_FILENAME} key_value=${TOKEN_VALUE} sync_config=${BIGIP_SYNC_CONFIG} sync_device_group=${BIGIP_SYNC_DEVICE_GROUP} ${ANSIBLE_EXTRA_VARS}" \
     ${ANSIBLE_PLAYBOOK_DEPLOY_CHALLENGE}
 
   return ${?}
@@ -35,7 +35,7 @@ clean_challenge() {
 
   ansible-playbook ${ANSIBLE_ARGS} \
     --inventory=${ANSIBLE_INVENTORY} \
-    --extra-vars "bigip_partition=${BIGIP_PARTITION} data_group_name=${BIGIP_DATA_GROUP_NAME} key_name=${TOKEN_FILENAME} key_value=${TOKEN_VALUE} ${ANSIBLE_EXTRA_VARS}" \
+    --extra-vars "bigip_partition=${BIGIP_PARTITION} data_group_name=${BIGIP_DATA_GROUP_NAME} key_name=${TOKEN_FILENAME} key_value=${TOKEN_VALUE} sync_config=${BIGIP_SYNC_CONFIG} sync_device_group=${BIGIP_SYNC_DEVICE_GROUP} ${ANSIBLE_EXTRA_VARS}" \
     ${ANSIBLE_PLAYBOOK_CLEAN_CHALLENGE}
 
   return ${?}
